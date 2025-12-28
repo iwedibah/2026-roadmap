@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry's 2026 AI Mastery Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: #1a1a1a;
+        }
+        
+        .mission-box {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border-left: 5px solid #ff8c00;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        .mission-box h2 {
+            color: #ff8c00;
+            margin-bottom: 15px;
+        }
+        
+        .daily-schedule {
+            background: linear-gradient(135deg, #a8d500 0%, #ff8c00 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: #000;
+        }
+        
+        .schedule-item {
+            background: #1a1a1a;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 8px;
+            color: #fff;
+            border-left: 4px solid #ff8c00;
+        }
+        
+        .week-navigator {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.2s;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .week-info {
+            text-align: center;
+        }
+        
+        .week-info h2 {
+            color: #ff8c00;
+            font-size: 1.8em;
+        }
+        
+        .week-info p {
+            color: #a8d500;
+            margin-top: 5px;
+        }
+        
+        .day-card {
+            background: #2d2d2d;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 2px solid #ff8c00;
+        }
+        
+        .day-header {
+            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .day-title {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .day-date {
+            font-size: 1em;
+            opacity: 0.8;
+        }
+        
+        .task-list {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .task-item {
+            background: #2d2d2d;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .task-item:hover {
+            background: #3d3d3d;
+            transform: translateX(5px);
+        }
+        
+        .task-item.completed {
+            opacity: 0.7;
+            background: #1a3d1a;
+        }
+        
+        .task-item.missed {
+            opacity: 0.7;
+            background: #3d1a1a;
+        }
+        
+        .checkbox {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #ff8c00;
+            border-radius: 6px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #1a1a1a;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .checkbox.checked {
+            background: #a8d500;
+            border-color: #a8d500;
+            color: #000;
+        }
+        
+        .checkbox.missed {
+            background: #ff4444;
+            border-color: #ff4444;
+            color: #fff;
+        }
+        
+        .task-text {
+            flex: 1;
+        }
+        
+        .task-time {
+            color: #ff8c00;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+        
+        .progress-section {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            background: #2d2d2d;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: #2d2d2d;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ff8c00;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            color: #a8d500;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #fff;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 HENRY'S 2026 GROWTH STRATEGY AND ROADMAP TOWARDS MASTERY</h1>
+            <p>Going Global With AI and Building Wealth Through Technology</p>
+        </div>
+        
+        <div class="mission-box">
+            <h2>🎯 MY MISSION</h2>
+            <p><strong>WHO:</strong> Henry - 27-year-old Nigerian tech enthusiast</p>
+            <p><strong>WHAT:</strong> Master AI development & integration, transitioning from video editing to AI professional</p>
+            <p><strong>WHY:</strong> To make lives easier through AI and help Africans build wealth through technology</p>
+            <p><strong>WHEN:</strong> Full transition by Q4 2026</p>
+        </div>
+        
+        <div class="daily-schedule">
+            <h2>⏰ DAILY SCHEDULE</h2>
+            <div class="schedule-item">
+                <strong>9:00 AM - 6:00 PM:</strong> Work at Vivera (Video Editing)
+            </div>
+            <div class="schedule-item">
+                <strong>6:00 PM - 7:00 PM:</strong> Dinner + Rest
+            </div>
+            <div class="schedule-item">
+                <strong>7:00 PM - 8:30 PM:</strong> Primary Learning (Course Work)
+            </div>
+            <div class="schedule-item">
+                <strong>8:30 PM - 9:30 PM:</strong> Project Building / Practice
+            </div>
+            <div class="schedule-item">
+                <strong>9:30 PM - 10:00 PM:</strong> Daily Reading
+            </div>
+            <div class="schedule-item">
+                <strong>10:00 PM - 12:00 AM:</strong> Movie Time (Optional, 2hrs max)
+            </div>
+            <div class="schedule-item">
+                <strong>12:00 AM - 3:00 AM:</strong> Sleep Preparation / Extended Movie Time
+            </div>
+        </div>
+        
+        <div class="week-navigator">
+            <button class="nav-btn" onclick="previousWeek()" id="prevBtn">← Previous Week</button>
+            <div class="week-info">
+                <h2 id="weekTitle">Week 1 of 52</h2>
+                <p id="weekDates">January 1-7, 2026</p>
+                <p id="monthInfo" style="color: #ff8c00; font-weight: bold;">JANUARY: Reading "Zero to One"</p>
+            </div>
+            <button class="nav-btn" onclick="nextWeek()" id="nextBtn">Next Week →</button>
+        </div>
+        
+        <div id="dailyTasksContainer"></div>
+        
+        <div class="progress-section">
+            <h3 style="color: #ff8c00; margin-bottom: 15px;">📊 Week Progress</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="completedTasks">0</div>
+                    <div class="stat-label">Tasks Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="missedTasks">0</div>
+                    <div class="stat-label">Tasks Missed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="weekCompletion">0%</div>
+                    <div class="stat-label">Week Completion</div>
+                </div>
+            </div>
+            <div class="progress-bar" style="margin-top: 20px;">
+                <div class="progress-fill" id="weekProgressBar" style="width: 0%">0%</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentWeek = 1;
+        const totalWeeks = 52;
+        
+        // Course schedule mapping
+        const courseSchedule = {
+            1: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
+            2: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
+            3: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
+            4: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
+            5: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
+            6: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
+            7: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
+            8: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
+            9: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money" },
+            10: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money" },
+            11: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money" },
+            12: { course: "Python Basics (freeCodeCamp)", time: "1.5 hrs", book: "Psychology of Money" },
+            13: { course: "Python Basics (freeCodeCamp)", time: "1.5 hrs", book: "Psychology of Money" },
+            14: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
+            15: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
+            16: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
+            17: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
+            18: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
+            19: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
+            20: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
+            21: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
+            22: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
+            23: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
+            24: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
+            25: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
+            26: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
+            27: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
+            28: { course: "Deep Learning (Fast.ai)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
+            29: { course: "Deep Learning (Fast.ai)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
+            30: { course: "Deep Learning (Fast.ai)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
+            31: { course: "Complete AI Guide", time: "1 hr", book: "15 Invaluable Laws of Growth" },
+            32: { course: "Complete AI Guide", time: "1 hr", book: "The Rules of Break" },
+            33: { course: "Deep Learning + Deployment", time: "2 hrs", book: "The Rules of Break" },
+            34: { course: "Deep Learning + Deployment", time: "2 hrs", book: "The Rules of Break" },
+            35: { course: "Deep Learning + Deployment", time: "2 hrs", book: "The Rules of Break" },
+            36: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
+            37: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
+            38: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
+            39: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
+            40: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
+            41: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
+            42: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
+            43: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
+            44: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
+            45: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
+            46: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
+            47: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
+            48: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
+            49: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
+            50: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
+            51: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
+            52: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" }
+        };
+        
+        function getWeekDates(weekNum) {
+            const startDate = new Date(2026, 0, 1);
+            startDate.setDate(startDate.getDate() + (weekNum - 1) * 7);
+            
+            const endDate = new Date(startDate);
+            endDate.setDate(endDate.getDate() + 6);
+            
+            const months = ["January", "February", "March", "April", "May", "June", 
+                          "July", "August", "September", "October", "November", "December"];
+            
+            return {
+                start: startDate,
+                end: endDate,
+                startStr: `${months[startDate.getMonth()]} ${startDate.getDate()}`,
+                endStr: `${months[endDate.getMonth()]} ${endDate.getDate()}`,
+                month: months[startDate.getMonth()].toUpperCase()
+            };
+        }
+        
+        function getDailyTasks(dayOfWeek, weekNum) {
+            const schedule = courseSchedule[weekNum] || courseSchedule[1];
+            
+            const tasks = [
+                { text: `📚 Read "${schedule.book}"`, time: "9:30-10:00 PM", category: "reading" },
+                { text: `🎓 Course: ${schedule.course}`, time: `7:00-${schedule.time === "1 hr" ? "8:00" : schedule.time === "1.5 hrs" ? "8:30" : "9:00"} PM`, category: "learning" },
+                { text: "💻 Project Work / Practice", time: schedule.time === "2 hrs" ? "---" : "8:30-9:30 PM", category: "building" },
+                { text: "📝 Document Wealth Principles (Weekly)", time: "Weekend", category: "wealth" },
+                { text: "💰 Track Savings & Expenses", time: "Daily Review", category: "finance" }
+            ];
+            
+            // Add specific tasks based on week number
+            if (weekNum <= 4) {
+                tasks.push({ text: "🔍 Research Masters Programs", time: "Weekly", category: "research" });
+            } else if (weekNum >= 18 && weekNum <= 26) {
+                tasks.push({ text: "💼 Apply to Freelance Jobs", time: "Weekly", category: "freelance" });
+            } else if (weekNum >= 27) {
+                tasks.push({ text: "🚀 Work on Freelance Projects", time: "Daily", category: "freelance" });
+            }
+            
+            return tasks;
+        }
+        
+        function renderWeek() {
+            const dates = getWeekDates(currentWeek);
+            const schedule = courseSchedule[currentWeek];
+            
+            document.getElementById('weekTitle').textContent = `Week ${currentWeek} of ${totalWeeks}`;
+            document.getElementById('weekDates').textContent = `${dates.startStr} - ${dates.endStr}, 2026`;
+            document.getElementById('monthInfo').textContent = `${dates.month}: Reading "${schedule.book}"`;
+            
+            const container = document.getElementById('dailyTasksContainer');
+            container.innerHTML = '';
+            
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            
+            for (let i = 0; i < 7; i++) {
+                const dayDate = new Date(dates.start);
+                dayDate.setDate(dayDate.getDate() + i);
+                
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.innerHTML = `
+                    <div class="day-title">${days[i]}</div>
+                    <div class="day-date">${dayDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</div>
+                `;
+                
+                const taskList = document.createElement('div');
+                taskList.className = 'task-list';
+                
+                const tasks = getDailyTasks(i, currentWeek);
+                const today = new Date();
+                const isPastDay = dayDate < today && dayDate.toDateString() !== today.toDateString();
+                
+                tasks.forEach((task, index) => {
+                    const taskItem = document.createElement('div');
+                    taskItem.className = 'task-item';
+                    taskItem.onclick = () => toggleTask(taskItem, currentWeek, i, index);
+                    
+                    const checkbox = document.createElement('div');
+                    checkbox.className = 'checkbox';
+                    
+                    const savedState = localStorage.getItem(`task_${currentWeek}_${i}_${index}`);
+                    
+                    if (savedState === 'completed') {
+                        checkbox.classList.add('checked');
+                        checkbox.textContent = '✓';
+                        taskItem.classList.add('completed');
+                    } else if (isPastDay && savedState !== 'completed') {
+                        checkbox.classList.add('missed');
+                        checkbox.textContent = '✗';
+                        taskItem.classList.add('missed');
+                    }
+                    
+                    taskItem.innerHTML = `
+                        ${checkbox.outerHTML}
+                        <div class="task-text">${task.text}</div>
+                        <div class="task-time">${task.time}</div>
+                    `;
+                    
+                    taskList.appendChild(taskItem);
+                });
+                
+                dayCard.appendChild(dayHeader);
+                dayCard.appendChild(taskList);
+                container.appendChild(dayCard);
+            }
+            
+            updateWeekProgress();
+            updateNavButtons();
+        }
+        
+        function toggleTask(element, week, day, taskIndex) {
+            const checkbox = element.querySelector('.checkbox');
+            const key = `task_${week}_${day}_${taskIndex}`;
+            
+            if (checkbox.classList.contains('missed')) {
+                return; // Can't toggle missed tasks
+            }
+            
+            if (checkbox.classList.contains('checked')) {
+                checkbox.classList.remove('checked');
+                checkbox.textContent = '';
+                element.classList.remove('completed');
+                localStorage.removeItem(key);
+            } else {
+                checkbox.classList.add('checked');
+                checkbox.textContent = '✓';
+                element.classList.add('completed');
+                localStorage.setItem(key, 'completed');
+            }
+            
+            updateWeekProgress();
+        }
+        
+        function updateWeekProgress() {
+            let completed = 0;
+            let missed = 0;
+            let total = 0;
+            
+            const tasks = document.querySelectorAll('.task-item');
+            tasks.forEach(task => {
+                total++;
+                if (task.classList.contains('completed')) completed++;
+                if (task.classList.contains('missed')) missed++;
+            });
+            
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('missedTasks').textContent = missed;
+            document.getElementById('weekCompletion').textContent = percentage + '%';
+            document.getElementById('weekProgressBar').style.width = percentage + '%';
+            document.getElementById('weekProgressBar').textContent = percentage + '%';
+        }
+        
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentWeek === 1;
+            document.getElementById('nextBtn').disabled = currentWeek === totalWeeks;
+        }
+        
+        function previousWeek() {
+            if (currentWeek > 1) {
+                currentWeek--;
+                renderWeek();
+            }
+        }
+        
+        function nextWeek() {
+            if (currentWeek < totalWeeks) {
+                currentWeek++;
+                renderWeek();
+            }
+        }
+        
+        // Initialize
+        window.addEventListener('load', renderWeek);
+    </script>
+</body>
+</html>
