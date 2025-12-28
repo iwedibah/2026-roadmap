@@ -13,35 +13,159 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: #fff;
-            padding: 20px;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #000000 0%, #1a0f00 50%, #2d1500 100%);
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 213, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 30px) scale(1.1); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: clamp(1.8em, 5vw, 3.5em);
+            background: linear-gradient(135deg, #ff8c00 0%, #ffd700 50%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: glow 3s ease-in-out infinite;
+            line-height: 1.2;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1em, 2.5vw, 1.4em);
+            color: #a8d500;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 140, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255, 140, 0, 0.6); }
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.6);
         }
         
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 20px;
         }
         
-        .header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
+        .tab-navigation {
+            display: flex;
+            gap: 10px;
+            background: #1a1a1a;
+            padding: 15px;
             border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+            overflow-x: auto;
+            flex-wrap: wrap;
         }
         
-        .header h1 {
-            font-size: 2.5em;
+        .tab-btn {
+            background: #2d2d2d;
+            color: #fff;
+            border: 2px solid #3d3d3d;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .tab-btn:hover {
+            background: #3d3d3d;
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
             color: #000;
-            margin-bottom: 10px;
+            border-color: #ff8c00;
         }
         
-        .header p {
-            font-size: 1.2em;
-            color: #1a1a1a;
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .mission-box {
@@ -57,23 +181,6 @@
             margin-bottom: 15px;
         }
         
-        .daily-schedule {
-            background: linear-gradient(135deg, #a8d500 0%, #ff8c00 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            color: #000;
-        }
-        
-        .schedule-item {
-            background: #1a1a1a;
-            padding: 12px 20px;
-            margin: 8px 0;
-            border-radius: 8px;
-            color: #fff;
-            border-left: 4px solid #ff8c00;
-        }
-        
         .week-navigator {
             background: #2d2d2d;
             padding: 20px;
@@ -82,6 +189,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .nav-btn {
@@ -93,11 +202,12 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 1em;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
         
         .nav-btn:hover {
             transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.4);
         }
         
         .nav-btn:disabled {
@@ -107,6 +217,8 @@
         
         .week-info {
             text-align: center;
+            flex: 1;
+            min-width: 250px;
         }
         
         .week-info h2 {
@@ -114,17 +226,30 @@
             font-size: 1.8em;
         }
         
-        .week-info p {
-            color: #a8d500;
-            margin-top: 5px;
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .day-card {
             background: #2d2d2d;
             padding: 25px;
             border-radius: 15px;
-            margin-bottom: 25px;
             border: 2px solid #ff8c00;
+            transition: all 0.3s ease;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.2);
         }
         
         .day-header {
@@ -141,11 +266,6 @@
         .day-title {
             font-size: 1.4em;
             font-weight: bold;
-        }
-        
-        .day-date {
-            font-size: 1em;
-            opacity: 0.8;
         }
         
         .task-list {
@@ -193,12 +313,19 @@
             background: #1a1a1a;
             font-weight: bold;
             font-size: 18px;
+            transition: all 0.3s ease;
         }
         
         .checkbox.checked {
             background: #a8d500;
             border-color: #a8d500;
             color: #000;
+            animation: checkBounce 0.5s ease;
+        }
+        
+        @keyframes checkBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(5deg); }
         }
         
         .checkbox.missed {
@@ -220,46 +347,53 @@
         
         .progress-section {
             background: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
         }
         
         .progress-bar {
             background: #2d2d2d;
-            height: 30px;
-            border-radius: 15px;
+            height: 35px;
+            border-radius: 20px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         
         .progress-fill {
             height: 100%;
             background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
-            transition: width 0.5s ease;
+            transition: width 0.8s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000;
             font-weight: bold;
+            font-size: 1.1em;
         }
         
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         
         .stat-card {
             background: #2d2d2d;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #ff8c00;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
         }
         
         .stat-value {
-            font-size: 2em;
+            font-size: 2.5em;
             color: #a8d500;
             font-weight: bold;
         }
@@ -269,15 +403,167 @@
             font-size: 0.9em;
             margin-top: 5px;
         }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #2d2d2d;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid #ff8c00;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            color: #ff8c00;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        .modal-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #3d3d3d;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 1em;
+        }
+        
+        .modal-textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #3d3d3d;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 1em;
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .modal-btn {
+            background: linear-gradient(135deg, #ff8c00 0%, #a8d500 100%);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .modal-btn.secondary {
+            background: #3d3d3d;
+            color: #fff;
+        }
+        
+        .music-widget {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #a8d500;
+        }
+        
+        .music-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .music-link {
+            background: #3d3d3d;
+            color: #a8d500;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .music-link:hover {
+            background: #a8d500;
+            color: #000;
+            transform: translateY(-2px);
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5em;
+            z-index: 999;
+            animation: celebrate 1s ease-out forwards;
+            pointer-events: none;
+        }
+        
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0; }
+        }
+        
+        .book-completion-box {
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .book-completion-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🚀 HENRY'S 2026 GROWTH STRATEGY AND ROADMAP TOWARDS MASTERY</h1>
-            <p>Going Global With AI and Building Wealth Through Technology</p>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">🚀 HENRY'S 2026 GROWTH STRATEGY</h1>
+            <p class="hero-subtitle">Going Global With AI and Building Wealth Through Technology</p>
+            <button class="cta-button" onclick="goToToday()">📅 Go To Today's Tasks</button>
         </div>
-        
+    </div>
+    
+    <div class="container">
         <div class="mission-box">
             <h2>🎯 MY MISSION</h2>
             <p><strong>WHO:</strong> Henry - 27-year-old Nigerian tech enthusiast</p>
@@ -286,124 +572,219 @@
             <p><strong>WHEN:</strong> Full transition by Q4 2026</p>
         </div>
         
-        <div class="daily-schedule">
-            <h2>⏰ DAILY SCHEDULE</h2>
-            <div class="schedule-item">
-                <strong>9:00 AM - 6:00 PM:</strong> Work at Vivera (Video Editing)
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('daily')">📅 Daily Tasks</button>
+            <button class="tab-btn" onclick="switchTab('financial')">💰 Financial Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('progress')">📊 Progress Hub</button>
+            <button class="tab-btn" onclick="switchTab('settings')">⚙️ Settings</button>
+        </div>
+        
+        <!-- Daily Tasks Tab -->
+        <div id="daily-tab" class="tab-content active">
+            <div class="music-widget">
+                <h3 style="color: #a8d500;">🎵 Study Session Music</h3>
+                <p style="color: #ccc; margin: 10px 0;">Pick your focus soundtrack:</p>
+                <div class="music-links">
+                    <a href="https://open.spotify.com" target="_blank" class="music-link">🎧 Spotify</a>
+                    <a href="https://www.boomplay.com" target="_blank" class="music-link">🎵 Boomplay</a>
+                    <a href="https://audiomack.com" target="_blank" class="music-link">🎶 Audiomack</a>
+                    <a href="https://music.youtube.com" target="_blank" class="music-link">▶️ YouTube Music</a>
+                </div>
             </div>
-            <div class="schedule-item">
-                <strong>6:00 PM - 7:00 PM:</strong> Dinner + Rest
+            
+            <div class="week-navigator">
+                <button class="nav-btn" onclick="previousWeek()" id="prevBtn">← Previous</button>
+                <div class="week-info">
+                    <h2 id="weekTitle">Week 1 of 52</h2>
+                    <p id="weekDates" style="color: #a8d500;">January 1-7, 2026</p>
+                    <p id="monthInfo" style="color: #ff8c00; font-weight: bold; margin-top: 5px;">Reading "Zero to One"</p>
+                </div>
+                <button class="nav-btn" onclick="nextWeek()" id="nextBtn">Next →</button>
             </div>
-            <div class="schedule-item">
-                <strong>7:00 PM - 8:30 PM:</strong> Primary Learning (Course Work)
+            
+            <div id="dailyTasksContainer" class="days-grid"></div>
+            
+            <div class="book-completion-box" onclick="openBookModal()">
+                <h3>📚 Book Completed This Week?</h3>
+                <p>Click here to log your lessons and actionables</p>
             </div>
-            <div class="schedule-item">
-                <strong>8:30 PM - 9:30 PM:</strong> Project Building / Practice
-            </div>
-            <div class="schedule-item">
-                <strong>9:30 PM - 10:00 PM:</strong> Daily Reading
-            </div>
-            <div class="schedule-item">
-                <strong>10:00 PM - 12:00 AM:</strong> Movie Time (Optional, 2hrs max)
-            </div>
-            <div class="schedule-item">
-                <strong>12:00 AM - 3:00 AM:</strong> Sleep Preparation / Extended Movie Time
+            
+            <div class="progress-section">
+                <h3 style="color: #ff8c00; margin-bottom: 15px;">📊 Week Progress</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="completedTasks">0</div>
+                        <div class="stat-label">Tasks Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="missedTasks">0</div>
+                        <div class="stat-label">Tasks Missed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="weekCompletion">0%</div>
+                        <div class="stat-label">Week Completion</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="weeklySavings">₦0</div>
+                        <div class="stat-label">Saved This Week</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="weekProgressBar" style="width: 0%">0%</div>
+                </div>
             </div>
         </div>
         
-        <div class="week-navigator">
-            <button class="nav-btn" onclick="previousWeek()" id="prevBtn">← Previous Week</button>
-            <div class="week-info">
-                <h2 id="weekTitle">Week 1 of 52</h2>
-                <p id="weekDates">January 1-7, 2026</p>
-                <p id="monthInfo" style="color: #ff8c00; font-weight: bold;">JANUARY: Reading "Zero to One"</p>
+        <!-- Financial Dashboard Tab -->
+        <div id="financial-tab" class="tab-content">
+            <h2 style="color: #ff8c00; margin-bottom: 20px;">💰 Financial Dashboard</h2>
+            <div class="mission-box">
+                <h3 style="color: #a8d500;">Monthly Savings Target</h3>
+                <p id="savingsTarget">Not set yet. Click below to set your target.</p>
+                <button class="nav-btn" style="margin-top: 15px;" onclick="openSavingsSetup()">Set Monthly Target</button>
             </div>
-            <button class="nav-btn" onclick="nextWeek()" id="nextBtn">Next Week →</button>
-        </div>
-        
-        <div id="dailyTasksContainer"></div>
-        
-        <div class="progress-section">
-            <h3 style="color: #ff8c00; margin-bottom: 15px;">📊 Week Progress</h3>
+            
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value" id="completedTasks">0</div>
-                    <div class="stat-label">Tasks Completed</div>
+                    <div class="stat-value" id="totalSaved">₦0</div>
+                    <div class="stat-label">Total Saved This Month</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="missedTasks">0</div>
-                    <div class="stat-label">Tasks Missed</div>
+                    <div class="stat-value" id="totalExpenses">₦0</div>
+                    <div class="stat-label">Total Expenses</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="weekCompletion">0%</div>
-                    <div class="stat-label">Week Completion</div>
+                    <div class="stat-value" id="savingsRate">0%</div>
+                    <div class="stat-label">Savings Rate</div>
                 </div>
             </div>
-            <div class="progress-bar" style="margin-top: 20px;">
-                <div class="progress-fill" id="weekProgressBar" style="width: 0%">0%</div>
+            
+            <div class="mission-box" id="financialAdvice">
+                <h3 style="color: #a8d500;">💡 Financial Insights</h3>
+                <p>Complete your first week of tracking to see personalized advice!</p>
             </div>
+        </div>
+        
+        <!-- Progress Hub Tab -->
+        <div id="progress-tab" class="tab-content">
+            <h2 style="color: #ff8c00; margin-bottom: 20px;">📊 Progress Hub</h2>
+            <div class="mission-box">
+                <h3 style="color: #a8d500;">📖 Book Notes Archive</h3>
+                <div id="bookNotesArchive">No books completed yet. Keep learning!</div>
+            </div>
+            
+            <div class="mission-box">
+                <h3 style="color: #a8d500;">💎 Wealth Principles Journal</h3>
+                <p>Document your wealth principles from Dr. Omeogu here</p>
+                <button class="nav-btn" onclick="addWealthPrinciple()">+ Add Principle</button>
+            </div>
+        </div>
+        
+        <!-- Settings Tab -->
+        <div id="settings-tab" class="tab-content">
+            <h2 style="color: #ff8c00; margin-bottom: 20px;">⚙️ Settings</h2>
+            <div class="mission-box">
+                <h3 style="color: #a8d500;">📅 Calendar Integration</h3>
+                <p>Export your tasks to Google Calendar</p>
+                <button class="nav-btn" style="margin-top: 15px;" onclick="exportToCalendar()">📥 Export to Calendar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-header">📚 Book Completion Notes</h2>
+            <label style="color: #a8d500; font-weight: bold;">Book Title:</label>
+            <input type="text" id="bookTitle" class="modal-input" placeholder="Enter book title">
+            
+            <label style="color: #a8d500; font-weight: bold; margin-top: 15px; display: block;">Key Lessons Learned:</label>
+            <textarea id="bookLessons" class="modal-textarea" placeholder="What were the main takeaways?"></textarea>
+            
+            <label style="color: #a8d500; font-weight: bold; margin-top: 15px; display: block;">Actionables to Implement:</label>
+            <textarea id="bookActions" class="modal-textarea" placeholder="How will you apply these lessons?"></textarea>
+            
+            <div style="text-align: right; margin-top: 20px;">
+                <button class="modal-btn secondary" onclick="closeModal('bookModal')">Cancel</button>
+                <button class="modal-btn" onclick="saveBookNotes()">Save Notes</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="financialModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-header" id="financialModalTitle">💰 Track Finances</h2>
+            <div id="financialModalContent"></div>
         </div>
     </div>
     
     <script>
         let currentWeek = 1;
         const totalWeeks = 52;
-        
-        // Course schedule mapping
-        const courseSchedule = {
-            1: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
-            2: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
-            3: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
-            4: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One" },
-            5: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
-            6: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
-            7: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
-            8: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers" },
-            9: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money" },
-            10: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money" },
-            11: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money" },
-            12: { course: "Python Basics (freeCodeCamp)", time: "1.5 hrs", book: "Psychology of Money" },
-            13: { course: "Python Basics (freeCodeCamp)", time: "1.5 hrs", book: "Psychology of Money" },
-            14: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
-            15: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
-            16: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
-            17: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery" },
-            18: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
-            19: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
-            20: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
-            21: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club" },
-            22: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
-            23: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
-            24: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
-            25: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
-            26: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work" },
-            27: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
-            28: { course: "Deep Learning (Fast.ai)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
-            29: { course: "Deep Learning (Fast.ai)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
-            30: { course: "Deep Learning (Fast.ai)", time: "1 hr", book: "15 Invaluable Laws of Growth" },
-            31: { course: "Complete AI Guide", time: "1 hr", book: "15 Invaluable Laws of Growth" },
-            32: { course: "Complete AI Guide", time: "1 hr", book: "The Rules of Break" },
-            33: { course: "Deep Learning + Deployment", time: "2 hrs", book: "The Rules of Break" },
-            34: { course: "Deep Learning + Deployment", time: "2 hrs", book: "The Rules of Break" },
-            35: { course: "Deep Learning + Deployment", time: "2 hrs", book: "The Rules of Break" },
-            36: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
-            37: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
-            38: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
-            39: { course: "Advanced AI + Specialization", time: "2 hrs", book: "The Rules of People" },
-            40: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
-            41: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
-            42: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
-            43: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life" },
-            44: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
-            45: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
-            46: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
-            47: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management" },
-            48: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
-            49: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
-            50: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
-            51: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" },
-            52: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review" }
+        let financialData = JSON.parse(localStorage.getItem('financialData')) || {
+            monthlyTarget: 0,
+            weeklySavings: [],
+            weeklyExpenses: [],
+            savingsPlan: null
         };
+        
+        const courseSchedule = {
+            1: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Zero to One", month: "JANUARY" },
+            5: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Outliers", month: "FEBRUARY" },
+            9: { course: "Web Development Bootcamp 2025", time: "1.5 hrs", book: "Psychology of Money", month: "MARCH" },
+            14: { course: "Build Web/Mobile Apps with AI", time: "1 hr", book: "Mastery", month: "APRIL" },
+            18: { course: "ML Specialization (Andrew Ng)", time: "1.5 hrs", book: "The 5 AM Club", month: "MAY" },
+            22: { course: "Complete AI Guide (ChatGPT)", time: "1 hr", book: "The Rules of Work", month: "JUNE" },
+            27: { course: "Complete AI Guide", time: "1 hr", book: "15 Invaluable Laws of Growth", month: "JULY" },
+            32: { course: "Deep Learning (Fast.ai)", time: "2 hrs", book: "The Rules of Break", month: "AUGUST" },
+            36: { course: "Advanced AI", time: "2 hrs", book: "The Rules of People", month: "SEPTEMBER" },
+            40: { course: "Masters/Advanced Learning", time: "2 hrs", book: "The Rules of Life", month: "OCTOBER" },
+            44: { course: "Continuous Learning", time: "2 hrs", book: "The Rules of Management", month: "NOVEMBER" },
+            48: { course: "2027 Planning", time: "2 hrs", book: "Favorite Book Review", month: "DECEMBER" }
+        };
+        
+        function getScheduleForWeek(week) {
+            let schedule = courseSchedule[1];
+            for (let w in courseSchedule) {
+                if (week >= parseInt(w)) {
+                    schedule = courseSchedule[w];
+                }
+            }
+            return schedule;
+        }
+        
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabName === 'financial') {
+                updateFinancialDashboard();
+            }
+        }
+        
+        function goToToday() {
+            const today = new Date();
+            const start2026 = new Date(2026, 0, 1);
+            const daysDiff = Math.floor((today - start2026) / (1000 * 60 * 60 * 24));
+            const targetWeek = Math.max(1, Math.min(Math.ceil(daysDiff / 7), 52));
+            
+            currentWeek = targetWeek;
+            switchTab('daily');
+            renderWeek();
+            
+            setTimeout(() => {
+                const dayOfWeek = today.getDay();
+                const dayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+                const dayCards = document.querySelectorAll('.day-card');
+                if (dayCards[dayIndex]) {
+                    dayCards[dayIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    dayCards[dayIndex].style.animation = 'pulse 1s ease-in-out 2';
+                }
+            }, 500);
+        }
         
         function getWeekDates(weekNum) {
             const startDate = new Date(2026, 0, 1);
@@ -419,41 +800,29 @@
                 start: startDate,
                 end: endDate,
                 startStr: `${months[startDate.getMonth()]} ${startDate.getDate()}`,
-                endStr: `${months[endDate.getMonth()]} ${endDate.getDate()}`,
-                month: months[startDate.getMonth()].toUpperCase()
+                endStr: `${months[endDate.getMonth()]} ${endDate.getDate()}`
             };
         }
         
         function getDailyTasks(dayOfWeek, weekNum) {
-            const schedule = courseSchedule[weekNum] || courseSchedule[1];
+            const schedule = getScheduleForWeek(weekNum);
             
-            const tasks = [
-                { text: `📚 Read "${schedule.book}"`, time: "9:30-10:00 PM", category: "reading" },
-                { text: `🎓 Course: ${schedule.course}`, time: `7:00-${schedule.time === "1 hr" ? "8:00" : schedule.time === "1.5 hrs" ? "8:30" : "9:00"} PM`, category: "learning" },
-                { text: "💻 Project Work / Practice", time: schedule.time === "2 hrs" ? "---" : "8:30-9:30 PM", category: "building" },
-                { text: "📝 Document Wealth Principles (Weekly)", time: "Weekend", category: "wealth" },
-                { text: "💰 Track Savings & Expenses", time: "Daily Review", category: "finance" }
+            return [
+                { text: `📚 Read "${schedule.book}"`, time: "9:30-10:00 PM", category: "reading", id: 'read' },
+                { text: `🎓 Course: ${schedule.course}`, time: `7:00 PM (${schedule.time})`, category: "learning", id: 'course' },
+                { text: "💻 Project Work / Practice", time: "8:30-9:30 PM", category: "building", id: 'project' },
+                { text: "💰 Track Savings & Expenses", time: "Daily Log", category: "finance", id: 'finance' },
+                { text: "📝 Wealth Principles (Weekly)", time: "Weekend", category: "wealth", id: 'wealth' }
             ];
-            
-            // Add specific tasks based on week number
-            if (weekNum <= 4) {
-                tasks.push({ text: "🔍 Research Masters Programs", time: "Weekly", category: "research" });
-            } else if (weekNum >= 18 && weekNum <= 26) {
-                tasks.push({ text: "💼 Apply to Freelance Jobs", time: "Weekly", category: "freelance" });
-            } else if (weekNum >= 27) {
-                tasks.push({ text: "🚀 Work on Freelance Projects", time: "Daily", category: "freelance" });
-            }
-            
-            return tasks;
         }
         
         function renderWeek() {
             const dates = getWeekDates(currentWeek);
-            const schedule = courseSchedule[currentWeek];
+            const schedule = getScheduleForWeek(currentWeek);
             
             document.getElementById('weekTitle').textContent = `Week ${currentWeek} of ${totalWeeks}`;
             document.getElementById('weekDates').textContent = `${dates.startStr} - ${dates.endStr}, 2026`;
-            document.getElementById('monthInfo').textContent = `${dates.month}: Reading "${schedule.book}"`;
+            document.getElementById('monthInfo').textContent = `${schedule.month}: Reading "${schedule.book}"`;
             
             const container = document.getElementById('dailyTasksContainer');
             container.innerHTML = '';
@@ -467,50 +836,58 @@
                 const dayCard = document.createElement('div');
                 dayCard.className = 'day-card';
                 
-                const dayHeader = document.createElement('div');
-                dayHeader.className = 'day-header';
-                dayHeader.innerHTML = `
-                    <div class="day-title">${days[i]}</div>
-                    <div class="day-date">${dayDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</div>
+                const today = new Date();
+                if (dayDate.toDateString() === today.toDateString()) {
+                    dayCard.style.borderColor = '#a8d500';
+                    dayCard.style.borderWidth = '3px';
+                }
+                
+                const dayHeader = `
+                    <div class="day-header">
+                        <div class="day-title">${days[i]}</div>
+                        <div class="day-date">${dayDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</div>
+                    </div>
                 `;
                 
                 const taskList = document.createElement('div');
                 taskList.className = 'task-list';
                 
                 const tasks = getDailyTasks(i, currentWeek);
-                const today = new Date();
                 const isPastDay = dayDate < today && dayDate.toDateString() !== today.toDateString();
                 
                 tasks.forEach((task, index) => {
                     const taskItem = document.createElement('div');
                     taskItem.className = 'task-item';
-                    taskItem.onclick = () => toggleTask(taskItem, currentWeek, i, index);
                     
-                    const checkbox = document.createElement('div');
-                    checkbox.className = 'checkbox';
+                    const taskKey = `task_${currentWeek}_${i}_${task.id}`;
+                    const savedState = localStorage.getItem(taskKey);
                     
-                    const savedState = localStorage.getItem(`task_${currentWeek}_${i}_${index}`);
+                    let checkboxClass = 'checkbox';
+                    let checkboxContent = '';
+                    let taskClass = 'task-item';
                     
                     if (savedState === 'completed') {
-                        checkbox.classList.add('checked');
-                        checkbox.textContent = '✓';
-                        taskItem.classList.add('completed');
-                    } else if (isPastDay && savedState !== 'completed') {
-                        checkbox.classList.add('missed');
-                        checkbox.textContent = '✗';
-                        taskItem.classList.add('missed');
+                        checkboxClass += ' checked';
+                        checkboxContent = '✓';
+                        taskClass += ' completed';
+                    } else if (isPastDay) {
+                        checkboxClass += ' missed';
+                        checkboxContent = '✗';
+                        taskClass += ' missed';
                     }
                     
+                    taskItem.className = taskClass;
                     taskItem.innerHTML = `
-                        ${checkbox.outerHTML}
+                        <div class="${checkboxClass}">${checkboxContent}</div>
                         <div class="task-text">${task.text}</div>
                         <div class="task-time">${task.time}</div>
                     `;
                     
+                    taskItem.onclick = () => toggleTask(taskItem, currentWeek, i, task, isPastDay);
                     taskList.appendChild(taskItem);
                 });
                 
-                dayCard.appendChild(dayHeader);
+                dayCard.innerHTML = dayHeader;
                 dayCard.appendChild(taskList);
                 container.appendChild(dayCard);
             }
@@ -519,27 +896,125 @@
             updateNavButtons();
         }
         
-        function toggleTask(element, week, day, taskIndex) {
+        function toggleTask(element, week, day, task, isPastDay) {
             const checkbox = element.querySelector('.checkbox');
-            const key = `task_${week}_${day}_${taskIndex}`;
             
             if (checkbox.classList.contains('missed')) {
-                return; // Can't toggle missed tasks
+                return;
+            }
+            
+            const taskKey = `task_${week}_${day}_${task.id}`;
+            
+            if (task.id === 'finance' && !checkbox.classList.contains('checked')) {
+                openFinancialLog(week, day, taskKey, element);
+                return;
             }
             
             if (checkbox.classList.contains('checked')) {
                 checkbox.classList.remove('checked');
                 checkbox.textContent = '';
                 element.classList.remove('completed');
-                localStorage.removeItem(key);
+                localStorage.removeItem(taskKey);
             } else {
                 checkbox.classList.add('checked');
                 checkbox.textContent = '✓';
                 element.classList.add('completed');
-                localStorage.setItem(key, 'completed');
+                localStorage.setItem(taskKey, 'completed');
+                showCelebration();
             }
             
             updateWeekProgress();
+        }
+        
+        function showCelebration() {
+            const emoji = ['🎉', '✨', '🚀', '⭐', '🔥'][Math.floor(Math.random() * 5)];
+            const celebration = document.createElement('div');
+            celebration.className = 'celebration';
+            celebration.textContent = emoji;
+            document.body.appendChild(celebration);
+            
+            setTimeout(() => celebration.remove(), 1000);
+        }
+        
+        function openFinancialLog(week, day, taskKey, element) {
+            const modal = document.getElementById('financialModal');
+            const title = document.getElementById('financialModalTitle');
+            const content = document.getElementById('financialModalContent');
+            
+            const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][day];
+            
+            if (day === 0 || day === 6) {
+                title.textContent = '💰 Weekly Financial Check-in';
+                content.innerHTML = `
+                    <p style="color: #a8d500; margin-bottom: 15px;">Quick ${dayOfWeek} review:</p>
+                    <label style="color: #fff; display: block; margin: 10px 0;">How much did you save this week?</label>
+                    <input type="number" id="weeklySavings" class="modal-input" placeholder="Enter amount (₦)">
+                    
+                    <label style="color: #fff; display: block; margin: 10px 0;">Total expenses this week?</label>
+                    <input type="number" id="weeklyExpenses" class="modal-input" placeholder="Enter amount (₦)">
+                    
+                    <div style="text-align: right; margin-top: 20px;">
+                        <button class="modal-btn secondary" onclick="closeModal('financialModal')">Cancel</button>
+                        <button class="modal-btn" onclick="saveFinancialData('${taskKey}', ${week}, true, this)">Save & Complete</button>
+                    </div>
+                `;
+            } else {
+                title.textContent = '💰 Quick Daily Log';
+                content.innerHTML = `
+                    <p style="color: #a8d500; margin-bottom: 15px;">${dayOfWeek} check-in:</p>
+                    <label style="color: #fff; display: block; margin: 10px 0;">Amount saved today:</label>
+                    <input type="number" id="dailySavings" class="modal-input" placeholder="Enter amount (₦)">
+                    
+                    <label style="color: #fff; display: block; margin: 10px 0;">Expenses today:</label>
+                    <input type="number" id="dailyExpenses" class="modal-input" placeholder="Enter amount (₦)">
+                    
+                    <div style="text-align: right; margin-top: 20px;">
+                        <button class="modal-btn secondary" onclick="closeModal('financialModal')">Skip</button>
+                        <button class="modal-btn" onclick="saveFinancialData('${taskKey}', ${week}, false, this)">Log & Complete</button>
+                    </div>
+                `;
+            }
+            
+            modal.classList.add('active');
+            window.currentFinancialElement = element;
+        }
+        
+        function saveFinancialData(taskKey, week, isWeekly, buttonElement) {
+            let savings = 0;
+            let expenses = 0;
+            
+            if (isWeekly) {
+                savings = parseFloat(document.getElementById('weeklySavings').value) || 0;
+                expenses = parseFloat(document.getElementById('weeklyExpenses').value) || 0;
+                
+                if (!financialData.weeklySavings[week]) financialData.weeklySavings[week] = 0;
+                if (!financialData.weeklyExpenses[week]) financialData.weeklyExpenses[week] = 0;
+                
+                financialData.weeklySavings[week] += savings;
+                financialData.weeklyExpenses[week] += expenses;
+            } else {
+                savings = parseFloat(document.getElementById('dailySavings').value) || 0;
+                expenses = parseFloat(document.getElementById('dailyExpenses').value) || 0;
+                
+                if (!financialData.weeklySavings[week]) financialData.weeklySavings[week] = 0;
+                if (!financialData.weeklyExpenses[week]) financialData.weeklyExpenses[week] = 0;
+                
+                financialData.weeklySavings[week] += savings;
+                financialData.weeklyExpenses[week] += expenses;
+            }
+            
+            localStorage.setItem('financialData', JSON.stringify(financialData));
+            localStorage.setItem(taskKey, 'completed');
+            
+            const element = window.currentFinancialElement;
+            const checkbox = element.querySelector('.checkbox');
+            checkbox.classList.add('checked');
+            checkbox.textContent = '✓';
+            element.classList.add('completed');
+            
+            closeModal('financialModal');
+            updateWeekProgress();
+            showCelebration();
         }
         
         function updateWeekProgress() {
@@ -555,12 +1030,170 @@
             });
             
             const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            const weeklySavings = financialData.weeklySavings[currentWeek] || 0;
             
             document.getElementById('completedTasks').textContent = completed;
             document.getElementById('missedTasks').textContent = missed;
             document.getElementById('weekCompletion').textContent = percentage + '%';
+            document.getElementById('weeklySavings').textContent = `₦${weeklySavings.toLocaleString()}`;
             document.getElementById('weekProgressBar').style.width = percentage + '%';
             document.getElementById('weekProgressBar').textContent = percentage + '%';
+        }
+        
+        function updateFinancialDashboard() {
+            const currentMonth = Math.ceil(currentWeek / 4);
+            const monthStart = (currentMonth - 1) * 4 + 1;
+            const monthEnd = Math.min(currentMonth * 4, 52);
+            
+            let monthSavings = 0;
+            let monthExpenses = 0;
+            
+            for (let w = monthStart; w <= monthEnd; w++) {
+                monthSavings += financialData.weeklySavings[w] || 0;
+                monthExpenses += financialData.weeklyExpenses[w] || 0;
+            }
+            
+            const savingsRate = monthSavings > 0 ? Math.round((monthSavings / (monthSavings + monthExpenses)) * 100) : 0;
+            
+            document.getElementById('totalSaved').textContent = `₦${monthSavings.toLocaleString()}`;
+            document.getElementById('totalExpenses').textContent = `₦${monthExpenses.toLocaleString()}`;
+            document.getElementById('savingsRate').textContent = `${savingsRate}%`;
+            
+            const target = financialData.monthlyTarget || 0;
+            const progress = target > 0 ? Math.round((monthSavings / target) * 100) : 0;
+            
+            const targetText = target > 0 ? `₦${target.toLocaleString()} (${progress}% achieved)` : 'Not set yet. Click below to set your target.';
+            document.getElementById('savingsTarget').textContent = targetText;
+            
+            updateFinancialAdvice(monthSavings, monthExpenses, savingsRate, target, progress);
+        }
+        
+        function updateFinancialAdvice(saved, expenses, rate, target, progress) {
+            const advice = document.getElementById('financialAdvice');
+            let message = '';
+            
+            if (target === 0) {
+                message = '<p>Set your monthly savings target to get personalized recommendations!</p>';
+            } else if (progress >= 100) {
+                message = '<p style="color: #a8d500;">🎉 Congratulations! You\'ve met your savings target this month! Keep up the excellent work!</p>';
+            } else if (progress >= 75) {
+                message = '<p style="color: #a8d500;">💪 Great progress! You\'re on track to meet your goal. Stay consistent!</p>';
+            } else if (progress >= 50) {
+                message = `<p style="color: #ff8c00;">⚠️ You're halfway there. Consider cutting ₦${Math.ceil((target - saved) / 2).toLocaleString()} in expenses to reach your goal.</p>`;
+            } else {
+                message = `<p style="color: #ff4444;">📊 Action needed: You need to save ₦${(target - saved).toLocaleString()} more. Review your expenses and find opportunities to save.</p>`;
+            }
+            
+            if (rate > 0) {
+                message += `<p style="margin-top: 10px;">Your current savings rate is ${rate}%. ${rate >= 30 ? 'Excellent!' : rate >= 20 ? 'Good work!' : 'Try to increase this to 25-30%.'}</p>`;
+            }
+            
+            advice.innerHTML = '<h3 style="color: #a8d500;">💡 Financial Insights</h3>' + message;
+        }
+        
+        function openSavingsSetup() {
+            const modal = document.getElementById('financialModal');
+            const title = document.getElementById('financialModalTitle');
+            const content = document.getElementById('financialModalContent');
+            
+            title.textContent = '🎯 Set Monthly Savings Target';
+            content.innerHTML = `
+                <p style="color: #a8d500; margin-bottom: 15px;">What's your savings goal for this month?</p>
+                <input type="number" id="monthlyTarget" class="modal-input" placeholder="Enter target amount (₦)">
+                
+                <h3 style="color: #ff8c00; margin: 20px 0 10px 0;">Choose Your Savings Strategy:</h3>
+                
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; margin: 10px 0; cursor: pointer; border: 2px solid transparent;" 
+                     onclick="selectPlan(this, 'aggressive')" class="plan-option">
+                    <h4 style="color: #a8d500;">🔥 Aggressive (35%)</h4>
+                    <p style="color: #ccc; font-size: 0.9em;">Save 35% of income upfront. Fastest path to financial goals.</p>
+                </div>
+                
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; margin: 10px 0; cursor: pointer; border: 2px solid transparent;" 
+                     onclick="selectPlan(this, 'balanced')" class="plan-option">
+                    <h4 style="color: #ff8c00;">⚖️ Balanced (25%)</h4>
+                    <p style="color: #ccc; font-size: 0.9em;">Save 25% + cut 2 non-essentials. Sustainable growth.</p>
+                </div>
+                
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; margin: 10px 0; cursor: pointer; border: 2px solid transparent;" 
+                     onclick="selectPlan(this, 'conservative')" class="plan-option">
+                    <h4 style="color: #ffa500;">🛡️ Conservative (15%)</h4>
+                    <p style="color: #ccc; font-size: 0.9em;">Save 15% automatically. Gentle start for building habits.</p>
+                </div>
+                
+                <div style="text-align: right; margin-top: 20px;">
+                    <button class="modal-btn secondary" onclick="closeModal('financialModal')">Cancel</button>
+                    <button class="modal-btn" onclick="saveSavingsTarget()">Set Target</button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+        
+        function selectPlan(element, plan) {
+            document.querySelectorAll('.plan-option').forEach(opt => {
+                opt.style.borderColor = 'transparent';
+            });
+            element.style.borderColor = '#a8d500';
+            window.selectedPlan = plan;
+        }
+        
+        function saveSavingsTarget() {
+            const target = parseFloat(document.getElementById('monthlyTarget').value) || 0;
+            
+            if (target <= 0) {
+                alert('Please enter a valid target amount');
+                return;
+            }
+            
+            if (!window.selectedPlan) {
+                alert('Please select a savings strategy');
+                return;
+            }
+            
+            financialData.monthlyTarget = target;
+            financialData.savingsPlan = window.selectedPlan;
+            localStorage.setItem('financialData', JSON.stringify(financialData));
+            
+            closeModal('financialModal');
+            updateFinancialDashboard();
+            showCelebration();
+        }
+        
+        function openBookModal() {
+            const schedule = getScheduleForWeek(currentWeek);
+            document.getElementById('bookTitle').value = schedule.book;
+            document.getElementById('bookModal').classList.add('active');
+        }
+        
+        function saveBookNotes() {
+            const title = document.getElementById('bookTitle').value;
+            const lessons = document.getElementById('bookLessons').value;
+            const actions = document.getElementById('bookActions').value;
+            
+            if (!lessons || !actions) {
+                alert('Please fill in both lessons and actionables');
+                return;
+            }
+            
+            const bookNotes = JSON.parse(localStorage.getItem('bookNotes')) || [];
+            bookNotes.push({
+                title,
+                lessons,
+                actions,
+                week: currentWeek,
+                date: new Date().toISOString()
+            });
+            
+            localStorage.setItem('bookNotes', JSON.stringify(bookNotes));
+            
+            closeModal('bookModal');
+            showCelebration();
+            alert('Book notes saved successfully! View them in Progress Hub.');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
         }
         
         function updateNavButtons() {
@@ -572,6 +1205,7 @@
             if (currentWeek > 1) {
                 currentWeek--;
                 renderWeek();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
         
@@ -579,11 +1213,28 @@
             if (currentWeek < totalWeeks) {
                 currentWeek++;
                 renderWeek();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
         
-        // Initialize
-        window.addEventListener('load', renderWeek);
+        function exportToCalendar() {
+            alert('Calendar export feature coming soon! This will generate an .ics file with all your tasks and reminders.');
+        }
+        
+        function addWealthPrinciple() {
+            alert('Wealth principles feature coming soon! You\'ll be able to document and review all lessons from Dr. Omeogu.');
+        }
+        
+        window.addEventListener('load', () => {
+            renderWeek();
+            updateFinancialDashboard();
+        });
+        
+        window.onclick = (event) => {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        };
     </script>
 </body>
 </html>
